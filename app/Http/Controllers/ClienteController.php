@@ -19,4 +19,21 @@ class ClienteController extends Controller
         $cliente = $cliente->create( $request->all() );
         return Redirect::to('/clientes');
     }
+    public function edit($id){
+        $cliente = Cliente::findOrFail( $id );
+        return view('clientes.form',['cliente'=> $cliente]);
+    }
+
+    public function update($id, Request $request){
+        $cliente = Cliente::findOrFail( $id );
+        $cliente->update( $request->all() );
+        return Redirect::to('/clientes');
+    }
+
+    public function delete($id){
+        $cliente = Cliente::findOrFail( $id );
+        $cliente->delete( );
+        return Redirect::to('/clientes');
+    }
+
 }
