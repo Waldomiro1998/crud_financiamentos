@@ -24,3 +24,16 @@ Route::group(['middleware]' => 'web'], function(){
     
 });
 
+Route::get('/clientes', 'App\Http\Controllers\ClienteController@index');
+Route::get('/clientes/new', 'App\Http\Controllers\ClienteController@new');
+Route::post('/clientes/add', 'App\Http\Controllers\ClienteController@add');
+
+Route::get('/financiamentos', 'App\Http\Controllers\FinanciamentoController@index')->middleware('auth');
+Route::get('/financiamentos/new', 'App\Http\Controllers\FinanciamentoController@new')->middleware('auth');
+Route::post('/financiamentos/add', 'App\Http\Controllers\FinanciamentoController@add')->middleware('auth');
+Route::get('/financiamentos/{id}/edit', 'App\Http\Controllers\FinanciamentoController@edit')->middleware('auth');
+Route::post('/financiamentos/update/{id}', 'App\Http\Controllers\FinanciamentoController@update')->middleware('auth');
+Route::delete('/financiamentos/delete/{id}', 'App\Http\Controllers\FinanciamentoController@delete')->middleware('auth');
+
+Route::get('/financiamentos/busca_cliente', 'App\Http\Controllers\FinanciamentoController@busca_cliente' )->name('financiamento.busca_cliente');
+
