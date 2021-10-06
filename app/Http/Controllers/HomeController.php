@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Financiamento;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $financiamentos = Financiamento::get();
+        $clientes = Cliente::get();
+        return view('home',['financiamentos'=> $financiamentos,'clientes'=> $clientes]);
     }
 }

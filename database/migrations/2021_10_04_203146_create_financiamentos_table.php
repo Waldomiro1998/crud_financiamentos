@@ -17,7 +17,7 @@ class CreateFinanciamentosTable extends Migration
         Schema::create('financiamentos', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('cliente_id')->unsigned()->index()->nullable();
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->decimal('valor_total', 65, 2);
             $table->integer('total_parcelas');
             $table->dateTime('data_financiamento');

@@ -14,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware]' => 'web'], function(){
-    Route::get('/', function () {
-        return view('welcome');
-    });
+   
+        Route::get('/', 'App\Http\Controllers\HomeController@index');
     
     Auth::routes();
     
@@ -30,6 +29,9 @@ Route::post('/clientes/add', 'App\Http\Controllers\ClienteController@add')->midd
 Route::get('/clientes/{id}/edit', 'App\Http\Controllers\ClienteController@edit')->middleware('auth');
 Route::post('/clientes/update/{id}', 'App\Http\Controllers\ClienteController@update')->middleware('auth');
 Route::delete('/clientes/delete/{id}', 'App\Http\Controllers\ClienteController@delete')->middleware('auth');
+Route::get('/clientes/{id}/show', 'App\Http\Controllers\ClienteController@show')->middleware('auth');
+Route::get('/clientes/carrega_financiamento', 'App\Http\Controllers\ClienteController@carrega_financiamento' )->name('clientes.carrega_financiamento');
+
 
 Route::get('/financiamentos', 'App\Http\Controllers\FinanciamentoController@index')->middleware('auth');
 Route::get('/financiamentos/new', 'App\Http\Controllers\FinanciamentoController@new')->middleware('auth');
@@ -37,6 +39,5 @@ Route::post('/financiamentos/add', 'App\Http\Controllers\FinanciamentoController
 Route::get('/financiamentos/{id}/edit', 'App\Http\Controllers\FinanciamentoController@edit')->middleware('auth');
 Route::post('/financiamentos/update/{id}', 'App\Http\Controllers\FinanciamentoController@update')->middleware('auth');
 Route::delete('/financiamentos/delete/{id}', 'App\Http\Controllers\FinanciamentoController@delete')->middleware('auth');
-
 Route::get('/financiamentos/busca_cliente', 'App\Http\Controllers\FinanciamentoController@busca_cliente' )->name('financiamento.busca_cliente');
 
